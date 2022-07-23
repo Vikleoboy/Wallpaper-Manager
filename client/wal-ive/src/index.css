@@ -1,0 +1,9 @@
+.sixcont > button,
+.sixcont > img,
+.sixcont > div {
+  transition: all 0.5s ease-out;
+}
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
