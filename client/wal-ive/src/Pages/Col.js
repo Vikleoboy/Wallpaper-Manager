@@ -36,7 +36,7 @@ function Col() {
 
     console.log(Pop);
     return (
-        <div className=" flex flex-wrap h-auto space-x-2">
+        <div className="  h-[100vh] grid grid-cols-4  ">
             {/* all collections maker this code makes it  */}
             {Object.keys(Collection).map((i, index) => {
                 console.log(Pop[`pop${index}`]);
@@ -54,7 +54,7 @@ function Col() {
             })}
 
             {/* this is for adding new collection  */}
-            <AddCol mk={changePop} dataCol={Collection} addInput = {addInput} Pop={Pop}/>
+            {/*<AddCol mk={changePop} dataCol={Collection} addInput = {addInput} Pop={Pop}/>*/}
         </div>
     );
 

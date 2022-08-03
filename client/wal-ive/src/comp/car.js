@@ -9,16 +9,17 @@ function Car(props) {
   const [tagdata, settagdata] = useState(null);
 
   useEffect(() => {
-    if (props.tag !== undefined) {
-      api(props.tag).then((data) => settagdata(data));
-    }
+    // if (props.tag !== undefined) {
+
+    // }
+    api(props?.tag).then((data) => settagdata(data));
   }, []);
 
   useEffect(() => {
     try {
       let car_data = carousel.current;
       console.log(car_data);
-      setwidth(car_data.scrollWidth - car_data.offsetWidth);
+      setwidth(car_data?.scrollWidth - car_data.offsetWidth);
     } catch {
       console.log("error came ");
     }
@@ -34,7 +35,6 @@ function Car(props) {
 
     tagName = tagName[tagName.length - 1].replace("+", " ");
   }
-  console.log(width);
 
   return (
     <>
