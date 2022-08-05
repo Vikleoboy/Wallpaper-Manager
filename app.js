@@ -5,7 +5,18 @@ import Collation from "./backend/col.js";
 import cors from "cors";
 import bodyParser from "body-parser";
 import fs from "fs";
+import store from "store";
+import { LocalStorage } from "node-localstorage";
 
+try {
+  if (1 == 1) {
+    localStorage === undefined;
+  }
+} catch {
+  global.localStorage = new LocalStorage("./scratch");
+}
+
+var num = 0;
 const app = express();
 const port = 3001;
 
@@ -32,6 +43,7 @@ app.use(cors());
 
 app.get("/setwal/:wal", async (req, res) => {
   //seting the wallpaper
+  localStorage.setItem("loop", "false");
   const { link } = req.query;
   const { wal } = req.params;
   console.log(wal, link);
@@ -57,34 +69,37 @@ function sleep(ms) {
   return new Promise((resolve) => setTimeout(resolve, ms));
 }
 async function Waloop(lst) {
-  let file;
-  let num = 0;
-  do {
-    file = await fs.readFileSync("./data/walloop.json", "utf-8");
-    file = JSON.parse(file);
+  let loop = true;
+  while (true) {
+    do {
+      if (localStorage.getItem("loop") === "true") {
+        await makewalUrl(localStorage.getItem("list").split(",")[num]);
+        await sleep(5000);
+      }
+      if (num + 1 === localStorage.getItem("list").split(",").length) {
+        num = 0;
+      } else {
+        num++;
+      }
+    } while (localStorage.getItem("loop") === "true");
 
-    if (file.loop) {
-      await makewalUrl(file.list[num]);
-    }
-    if (num + 1 === file.list.length) {
-      num = 0;
-    } else {
-      num++;
-    }
-    await sleep(5000);
-  } while (file.loop);
+    await sleep(1000);
+  }
 }
+
 app.post("/walloop", async (req, res) => {
-  let file = await fs.readFileSync("./data/walloop.json", "utf-8");
-  file = JSON.parse(file);
-  file.loop = true;
-  file.list = [...req.body.pics];
-  console.log(file);
-
-  await fs.writeFileSync("./data/walloop.json", JSON.stringify(file), "utf-8");
+  num = 0;
+  localStorage.setItem("list", [req.body.pics]);
+  localStorage.setItem("loop", "true");
+  console.log(
+    store,
+    store.get("list"),
+    localStorage.getItem("list").split(",").length
+  );
 });
-
 Waloop();
+
+console.log(store.get("list"));
 app.get("/col/:name", (req) => {
   let col = new Collation("./data/coll.json");
   const { name } = req.params;
