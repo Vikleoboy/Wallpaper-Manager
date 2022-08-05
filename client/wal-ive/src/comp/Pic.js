@@ -1,5 +1,6 @@
 import { motion, MotionConfig } from "framer-motion";
 import { useState, useEffect } from "react";
+import axios from "axios";
 
 function Pic(props) {
   let imgs = props.img;
@@ -20,13 +21,14 @@ function Pic(props) {
   function setwal(event) {
     setwall(event.currentTarget.parentNode.id);
   }
+
   return (
     <>
       <motion.div
         id={imgs.id}
         className={
           props.className +
-          "z-0 sixcont relative min-w-[50%] max-h-[40rem] p-[20px] group"
+          "z-0 sixcont relative min-w-[50%] xl:min-w-[33%] max-h-[40rem] p-[20px] group"
         }
       >
         <img
