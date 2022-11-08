@@ -1,6 +1,6 @@
 import express from "express";
 import { makewal, makewalUrl } from "./walset.js";
-import data from "./data/tr.json" assert { type: "json" };
+// import data from "./data/tr.json" assert { type: "json" };
 import Collation from "./backend/col.js";
 import cors from "cors";
 import bodyParser from "body-parser";
@@ -49,9 +49,9 @@ app.get("/", () => {
   console.log("got someone ");
 });
 
-app.get("/tr", async (req, res) => {
-  res.json(data);
-});
+// app.get("/tr", async (req, res) => {
+//   res.json(data);
+// });
 
 function sleep(ms) {
   return new Promise((resolve) => setTimeout(resolve, ms));
@@ -74,35 +74,35 @@ async function Waloop(lst) {
     await sleep(5000);
   } while (file.loop);
 }
-app.post("/walloop", async (req, res) => {
-  let file = await fs.readFileSync("./data/walloop.json", "utf-8");
-  file = JSON.parse(file);
-  file.loop = true;
-  file.list = [...req.body.pics];
-  console.log(file);
+// app.post("/walloop", async (req, res) => {
+//   let file = await fs.readFileSync("./data/walloop.json", "utf-8");
+//   file = JSON.parse(file);
+//   file.loop = true;
+//   file.list = [...req.body.pics];
+//   console.log(file);
 
-  await fs.writeFileSync("./data/walloop.json", JSON.stringify(file), "utf-8");
-});
+//   await fs.writeFileSync("./data/walloop.json", JSON.stringify(file), "utf-8");
+// });
 
-Waloop();
-app.get("/col/:name", (req) => {
-  let col = new Collation("./data/coll.json");
-  const { name } = req.params;
-  const { link } = req.query;
+// Waloop();
+// app.get("/col/:name", (req) => {
+//   let col = new Collation("./data/coll.json");
+//   const { name } = req.params;
+//   const { link } = req.query;
 
-  console.log(name, link);
-  console.log(col.data);
-  if (!Object.keys(col.data).includes(name)) {
-    col.addCol(name);
-  }
+//   console.log(name, link);
+//   console.log(col.data);
+//   if (!Object.keys(col.data).includes(name)) {
+//     col.addCol(name);
+//   }
 
-  if (!col.data[name].includes(link) && !(link === undefined)) {
-    col.additem(name, link);
-  }
-  col.end();
+//   if (!col.data[name].includes(link) && !(link === undefined)) {
+//     col.additem(name, link);
+//   }
+//   col.end();
 
-  res.json({ done: true });
-});
+//   res.json({ done: true });
+// });
 
 // app.get("/col/:name", (req) => {
 //   let col = new Collation("./data/coll.json");
@@ -118,10 +118,10 @@ app.get("/col/:name", (req) => {
 //   }
 // });
 
-app.get("/col", (req, res) => {
-  let col = new Collation("./data/coll.json");
-  res.json(col.data);
-});
+// app.get("/col", (req, res) => {
+//   let col = new Collation("./data/coll.json");
+//   res.json(col.data);
+// });
 
 app.listen(port, () => {
   console.log(`Example app listening on port ${port}`);
