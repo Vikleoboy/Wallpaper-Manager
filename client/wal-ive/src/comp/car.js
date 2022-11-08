@@ -63,7 +63,6 @@ function Car(props) {
   if (tagdata === null) {
     return <progress class="progress w-56"></progress>;
   } else {
-    console.log(tagdata);
     tagName = props.tag;
   }
 

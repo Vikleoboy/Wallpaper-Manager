@@ -1,4 +1,4 @@
-import { api } from "../api";
+import axios from "axios";
 import { useState, useEffect, useCallback } from "react";
 function useFetch(query, howmany, page) {
   const [loading, setloading] = useState(true);
@@ -8,10 +8,13 @@ function useFetch(query, howmany, page) {
   const just = useCallback(async () => {
     try {
       await seterror(false);
-      let res = await api(query, howmany, page);
 
+      let result = await axios(
+        `http://localhost:3001/api/search?query=${query}&pageNum=${page}`
+      );
+      console.log(result);
       await setdeta((pre) => {
-        return [...res.photos];
+        return result.data.res;
       });
 
       await setloading(false);

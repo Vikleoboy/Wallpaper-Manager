@@ -6,7 +6,7 @@ import Pic from "../comp/Pic";
 function Search() {
   const [text, settext] = useState("");
   const [PageNum, setPageNum] = useState(1);
-  const { loading, deta, error } = useFetch(text, 20, PageNum);
+  const { loading, error, deta } = useFetch(text, 20, PageNum);
 
   // on enter
   function onDown(e) {
@@ -17,7 +17,7 @@ function Search() {
   }
 
   // Logs
-
+  console.log(deta);
   return (
     <>
       <div className=" mx-auto mt-8 text-center">
@@ -38,10 +38,10 @@ function Search() {
           ) : loading ? (
             <h1 className=" text-4xl">Loading</h1>
           ) : (
-            deta.map((i) => {
+            deta.map((i, num) => {
               return (
                 <div className=" basis-1/2 lg:basis-1/3">
-                  <Pic key={i.id} img={i}></Pic>
+                  <Pic key={num} img={i}></Pic>
                 </div>
               );
             })

@@ -41,10 +41,14 @@ app.use(cors());
 
 app.get("/api/search", async (req, res) => {
   let { query, pageNum } = req.query;
-
+  console.log(query, pageNum);
   let result = await Wallpaper1(query, pageNum, 2);
 
-  res.json({ res: result });
+  if (query === "") {
+    res.status(500).send("something broke");
+  } else {
+    res.json({ res: result });
+  }
 });
 
 app.get("/setwal/:wal", async (req, res) => {
