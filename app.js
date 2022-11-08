@@ -1,3 +1,5 @@
+// --- Imports -------
+
 import express from "express";
 import { makewal, makewalUrl } from "./walset.js";
 // import data from "./data/tr.json" assert { type: "json" };
@@ -5,10 +7,13 @@ import Collation from "./backend/col.js";
 import cors from "cors";
 import bodyParser from "body-parser";
 import fs from "fs";
+import Wallpaper1 from "./api2.js";
 
+// variables
 const app = express();
 const port = 3001;
 
+// ------ Use less stuff ---------//
 // parse application/x-www-form-urlencoded
 app.use(bodyParser.urlencoded({ extended: false }));
 
@@ -29,6 +34,18 @@ app.use(function (req, res, next) {
 });
 
 app.use(cors());
+
+// ------ Use less stuff ---------//
+
+// main routs
+
+app.get("/api/search", async (req, res) => {
+  let { query, pageNum } = req.query;
+
+  let result = await Wallpaper1(query, pageNum, 2);
+
+  res.json({ res: result });
+});
 
 app.get("/setwal/:wal", async (req, res) => {
   //seting the wallpaper
