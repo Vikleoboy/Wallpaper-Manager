@@ -13,7 +13,15 @@ function Car(props) {
     // if (props.tag !== undefined) {
 
     // }
-    api(props?.tag).then((data) => settagdata(data));
+
+    let dod = async () => {
+      let res = await axios(
+        `http://localhost:3001/api/search?query=${props.tag}&pageNum=1`
+      );
+      settagdata(res.data.res);
+    };
+    dod();
+    // api(props.tag).then((data) => settagdata(data));
   }, []);
 
   useEffect(() => {
@@ -29,24 +37,21 @@ function Car(props) {
   // if data is not loaded it will say its loding
 
   async function walloop() {
-    let list = [];
-    for (let i of tagdata.photos) {
-      list.push(i.src.original);
-    }
-    let res = await axios.post("http://localhost:3001/walloop", { pics: list });
-    console.log(res);
-
+    // let list = [];
+    // for (let i of tagdata.photos) {
+    //   list.push(i.src.original);
+    // }
+    // let res = await axios.post("http://localhost:3001/walloop", { pics: list });
+    // console.log(res);
     // fetch("http://localhost:3001/walloop", {
     //   // Adding method type
     //   method: "POST",
-
     //   // Adding body or contents to send
     //   body: JSON.stringify({
     //     title: "foo",
     //     body: "bar",
     //     userId: 1,
     //   }),
-
     //   // Adding headers to the request
     //   headers: {
     //     "Content-type": "application/json; charset=UTF-8",
@@ -58,9 +63,8 @@ function Car(props) {
   if (tagdata === null) {
     return <progress class="progress w-56"></progress>;
   } else {
-    tagName = tagdata.next_page.split("=");
-
-    tagName = tagName[tagName.length - 1].replace("+", " ");
+    console.log(tagdata);
+    tagName = props.tag;
   }
 
   return (
@@ -83,8 +87,10 @@ function Car(props) {
           dragConstraints={{ right: 0, left: -width }}
           className=" flex z-0 "
         >
-          {tagdata.photos.map((imgs) => {
-            return <Pic className=" basis-1/3 " key={imgs.id} img={imgs}></Pic>;
+          {tagdata.map((imgs) => {
+            return (
+              <Pic className=" basis-1/3 " key={imgs.title} img={imgs}></Pic>
+            );
           })}
         </motion.div>
       </motion.div>

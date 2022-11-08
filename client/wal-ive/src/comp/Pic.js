@@ -9,7 +9,7 @@ function Pic(props) {
 
   useEffect(() => {
     if (wal !== undefined) {
-      fetch(`http://localhost:3001/setwal/${wal}`).then((_) =>
+      fetch(`http://localhost:3001/setwal/link?link=${wal}`).then((_) =>
         console.log("bro send")
       );
       console.log(wal, "send ");
@@ -18,14 +18,15 @@ function Pic(props) {
     }
   }, [wal]);
 
-  function setwal(event) {
-    setwall(event.currentTarget.parentNode.id);
+  function setwal() {
+    console.log(imgs.image);
+    setwall(imgs.image);
   }
 
   return (
     <>
       <motion.div
-        id={imgs.id}
+        id={imgs.title}
         className={
           props.className +
           "z-0 sixcont relative min-w-[50%] xl:min-w-[33%] max-h-[40rem] p-[20px] group"
@@ -33,7 +34,7 @@ function Pic(props) {
       >
         <img
           className=" w-full h-full rounded-xl pointer-events-none shadow-inner drop-shadow-xl"
-          src={imgs.src.large}
+          src={imgs.thumbnail}
         ></img>
         <button
           onClick={setwal}
