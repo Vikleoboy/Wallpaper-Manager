@@ -2,7 +2,7 @@
 
 import express from "express";
 import { makewal, makewalUrl } from "./walset.js";
-// import data from "./data/tr.json" assert { type: "json" };
+import data from "./data/tr.json" assert { type: "json" };
 import Collation from "./backend/col.js";
 import cors from "cors";
 import bodyParser from "body-parser";
@@ -40,8 +40,8 @@ app.use(cors());
 // main routs
 
 app.get("/api/search", async (req, res) => {
-  let { query, pageNum } = req.query;
-  console.log(query, pageNum);
+  let { query, pageNum, way } = req.query;
+  console.log(query, pageNum, way);
   let result = await Wallpaper1(query, pageNum, 2);
 
   if (query === "") {
@@ -70,9 +70,9 @@ app.get("/", () => {
   console.log("got someone ");
 });
 
-// app.get("/tr", async (req, res) => {
-//   res.json(data);
-// });
+app.get("/tr", async (req, res) => {
+  res.json(data);
+});
 
 function sleep(ms) {
   return new Promise((resolve) => setTimeout(resolve, ms));
@@ -95,17 +95,17 @@ async function Waloop(lst) {
     await sleep(5000);
   } while (file.loop);
 }
-// app.post("/walloop", async (req, res) => {
-//   let file = await fs.readFileSync("./data/walloop.json", "utf-8");
-//   file = JSON.parse(file);
-//   file.loop = true;
-//   file.list = [...req.body.pics];
-//   console.log(file);
+app.post("/walloop", async (req, res) => {
+  let file = await fs.readFileSync("./data/walloop.json", "utf-8");
+  file = JSON.parse(file);
+  file.loop = true;
+  file.list = [...req.body.pics];
+  console.log(file);
 
-//   await fs.writeFileSync("./data/walloop.json", JSON.stringify(file), "utf-8");
-// });
+  await fs.writeFileSync("./data/walloop.json", JSON.stringify(file), "utf-8");
+});
 
-// Waloop();
+Waloop();
 // app.get("/col/:name", (req) => {
 //   let col = new Collation("./data/coll.json");
 //   const { name } = req.params;
@@ -139,10 +139,10 @@ async function Waloop(lst) {
 //   }
 // });
 
-// app.get("/col", (req, res) => {
-//   let col = new Collation("./data/coll.json");
-//   res.json(col.data);
-// });
+app.get("/col", (req, res) => {
+  let col = new Collation("./data/coll.json");
+  res.json(col.data);
+});
 
 app.listen(port, () => {
   console.log(`Example app listening on port ${port}`);

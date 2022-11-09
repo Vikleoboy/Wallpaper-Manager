@@ -5,11 +5,15 @@ async function Wallpaper1(query, pageNum = 1, way = 1) {
   for (let i = 0; i < 10; i++) {
     console.log(i);
     try {
-      if (way === 1) {
+      if (way == 1) {
         var wallpaper = await wall.getAnimeWall4({
           type: "sfw",
           title: query,
           page: pageNum,
+        });
+        wallpaper.map((i, n) => {
+          i.thumbnail = i.image;
+          i.title = n;
         });
       } else {
         var wallpaper = await wall.getAnimeWall1({

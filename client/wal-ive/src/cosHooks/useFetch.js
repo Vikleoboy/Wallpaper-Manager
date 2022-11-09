@@ -10,7 +10,7 @@ function useFetch(query, howmany, page) {
       await seterror(false);
 
       let result = await axios(
-        `http://localhost:3001/api/search?query=${query}&pageNum=${page}`
+        `http://localhost:3001/api/search?query=${query}&pageNum=${page}&way=1`
       );
       console.log(result);
       await setdeta((pre) => {

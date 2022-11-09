@@ -16,7 +16,7 @@ function Car(props) {
 
     let dod = async () => {
       let res = await axios(
-        `http://localhost:3001/api/search?query=${props.tag}&pageNum=1`
+        `http://localhost:3001/api/search?query=${props.tag}&pageNum=1&way=2`
       );
       settagdata(res.data.res);
     };
@@ -37,26 +37,26 @@ function Car(props) {
   // if data is not loaded it will say its loding
 
   async function walloop() {
-    // let list = [];
-    // for (let i of tagdata.photos) {
-    //   list.push(i.src.original);
-    // }
-    // let res = await axios.post("http://localhost:3001/walloop", { pics: list });
-    // console.log(res);
-    // fetch("http://localhost:3001/walloop", {
-    //   // Adding method type
-    //   method: "POST",
-    //   // Adding body or contents to send
-    //   body: JSON.stringify({
-    //     title: "foo",
-    //     body: "bar",
-    //     userId: 1,
-    //   }),
-    //   // Adding headers to the request
-    //   headers: {
-    //     "Content-type": "application/json; charset=UTF-8",
-    //   },
-    // });
+    let list = [];
+    for (let i of tagdata) {
+      list.push(i.image);
+    }
+    let res = await axios.post("http://localhost:3001/walloop", { pics: list });
+    console.log(res);
+    fetch("http://localhost:3001/walloop", {
+      // Adding method type
+      method: "POST",
+      // Adding body or contents to send
+      body: JSON.stringify({
+        title: "foo",
+        body: "bar",
+        userId: 1,
+      }),
+      // Adding headers to the request
+      headers: {
+        "Content-type": "application/json; charset=UTF-8",
+      },
+    });
   }
 
   var tagName = null;
@@ -75,7 +75,7 @@ function Car(props) {
           onClick={walloop}
           className="btn bg-gradient-to-r from-pink-500 to-yellow-500"
         >
-          Wallpaper Loop{" "}
+          Wallpaper Loop
         </button>
       </div>
 

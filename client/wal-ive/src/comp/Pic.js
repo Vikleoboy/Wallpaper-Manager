@@ -33,6 +33,7 @@ function Pic(props) {
         }
       >
         <img
+          alt="loading"
           className=" w-full h-full rounded-xl pointer-events-none shadow-inner drop-shadow-xl"
           src={imgs.thumbnail}
         ></img>
