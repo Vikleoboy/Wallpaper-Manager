@@ -86,10 +86,8 @@ function Car(props) {
           dragConstraints={{ right: 0, left: -width }}
           className=" flex z-0 "
         >
-          {tagdata.map((imgs) => {
-            return (
-              <Pic className=" basis-1/3 " key={imgs.title} img={imgs}></Pic>
-            );
+          {tagdata.map((imgs, n) => {
+            return <Pic className=" basis-1/3 " key={n} img={imgs}></Pic>;
           })}
         </motion.div>
       </motion.div>

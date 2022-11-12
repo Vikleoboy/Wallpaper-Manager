@@ -1,29 +1,30 @@
 import { Navbar } from "@material-tailwind/react";
 import { createPortal } from "react-dom";
 import { useState } from "react";
+import { Link } from "react-router-dom";
 
 export default function Nav(props) {
   const [data, setdata] = useState([
     {
       label: "Home",
-      value: "home",
+      value: "/",
       active: true,
     },
     {
       label: "Search",
-      value: "search",
+      value: "/Search",
       active: false,
     },
 
     {
       label: "Collaction",
-      value: "vue",
+      value: "/Collaction",
       active: false,
     },
 
     {
       label: "Tag",
-      value: "angular",
+      value: "/Tag",
       active: false,
     },
 
@@ -89,7 +90,7 @@ export default function Nav(props) {
                 className={a.active ? "tab tab-active text-md" : "tab text-md "}
                 onClick={tabget}
               >
-                {a.label}
+                <Link to={a.value}>{a.label}</Link>
               </button>
             );
           })}
