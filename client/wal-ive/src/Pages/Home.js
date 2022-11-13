@@ -5,7 +5,7 @@ import Tr from "../comp/TrPage";
 import { useState, useEffect, useRef } from "react";
 
 function Home() {
-  const [cars, setcars] = useState(["tranding wallpapers", "girls"]);
+  const [cars, setcars] = useState(["aesthetic", "girls"]);
 
   function addCar(tag) {
     console.log(cars);

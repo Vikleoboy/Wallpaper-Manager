@@ -3,6 +3,16 @@
 .sixcont > div {
   transition: all 0.5s ease-out;
 }
+@font-face {
+  font-family: "SF-Pro";
+  font-style: normal;
+  src : url('regular.OTF'); 
+} 
+
+.mac {
+  font-family: "SF-Pro"
+}
+
 
 @tailwind base;
 @tailwind components;
