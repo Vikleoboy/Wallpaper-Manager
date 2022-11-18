@@ -39,7 +39,8 @@ function Pic(props) {
         ></img>
         <button
           onClick={setwal}
-          className="btn group-hover:opacity-100 opacity-0 absolute bottom-[40px] left-[10%] bg-primary rounded-full px-3 py-2 text-white text-md shadow-inner drop-shadow-2xl hover:bg-primary bg-gradient-to-r from-indigo-500 via-purple-500 to-pink-500"
+          className=" group-hover:opacity-100 opacity-0 absolute bottom-[40px] left-[10%] bg-accent text-base-100 rounded-lg px-3 py-1 shadow-inner drop-shadow-lg  text-md  
+           "
         >
           Set wallpaper
         </button>

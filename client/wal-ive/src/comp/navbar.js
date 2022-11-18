@@ -51,7 +51,7 @@ export default function Nav(props) {
   return createPortal(
     <div
       className={
-        " bg-secondary mac h-14 flex justify-between items-center  rounded-2xl px-4 shadow-inner drop-shadow-xl mb-6 bg" +
+        " bg-secondary mac h-14 flex justify-between items-center  rounded-2xl px-4 shadow-inner drop-shadow-xl  bg" +
         props.className
       }
     >
@@ -81,13 +81,17 @@ export default function Nav(props) {
 
       {/* tabs */}
       <div className=" ">
-        <div className="mac  tabs tabs-boxed mx-auto shadow-inner drop-shadow-sm ">
+        <div className="mac bg-primary rounded-lg p-1 mx-auto shadow-inner drop-shadow-sm ">
           {data.map((a) => {
             return (
               <button
                 key={a.value}
                 id={a.value}
-                className={a.active ? "tab tab-active text-md" : "tab text-md "}
+                className={
+                  a.active
+                    ? " bg-accent rounded-lg text-black  tab  text-md"
+                    : "tab text-md "
+                }
                 onClick={tabget}
               >
                 <Link to={a.value}>{a.label}</Link>

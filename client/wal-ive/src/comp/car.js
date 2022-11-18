@@ -67,20 +67,23 @@ function Car(props) {
   }
 
   return (
-    <>
+    <div className=" bg-secondary p-4 rounded-lg drop-shadow-lg">
       {/* Tag Name and Waloop Button */}
-      <div className="flex justify-between items-center px-6">
+      <div className=" bg-primary py-2 rounded-lg flex drop-shadow-lg justify-between items-center px-6">
         <h1 className=" text-2xl">{tagName}</h1>
         <button
           onClick={walloop}
-          className="btn bg-gradient-to-r from-pink-500 to-yellow-500"
+          className=" rounded-lg px-4 py-[0.2rem] bg-accent drop-shadow-lg shadow-inner text-base-100 "
         >
-          Wallpaper Loop
+          Slide Show
         </button>
       </div>
 
       {/* real functionality of carsonal  */}
-      <motion.div ref={carousel} className="  cursor-grab  overflow-hidden  ">
+      <motion.div
+        ref={carousel}
+        className=" bg-base-100 my-4 rounded-lg shadow-inner drop-shadow-xl cursor-grab  overflow-hidden  "
+      >
         <motion.div
           drag="x"
           dragConstraints={{ right: 0, left: -width }}
@@ -91,7 +94,7 @@ function Car(props) {
           })}
         </motion.div>
       </motion.div>
-    </>
+    </div>
   );
 }
 

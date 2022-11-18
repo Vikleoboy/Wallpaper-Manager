@@ -5,7 +5,7 @@ import Tr from "../comp/TrPage";
 import { useState, useEffect, useRef } from "react";
 
 function Home() {
-  const [cars, setcars] = useState(["aesthetic", "girls"]);
+  const [cars, setcars] = useState(["sea", "girls"]);
 
   function addCar(tag) {
     console.log(cars);
