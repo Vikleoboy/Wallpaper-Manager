@@ -1,6 +1,6 @@
 import e from "cors";
 import { useRef, useState, useEffect, useCallback } from "react";
-import { api } from "../api";
+
 import useFetch from "../cosHooks/useFetch";
 import Pic from "../comp/Pic";
 function Search() {

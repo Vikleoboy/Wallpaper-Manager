@@ -51,7 +51,7 @@ export default function Nav(props) {
   return createPortal(
     <div
       className={
-        " bg-secondary mac h-14 flex justify-between items-center  rounded-2xl px-4 shadow-inner drop-shadow-xl  bg" +
+        " bg-primary mt-1 mac h-14 flex justify-between items-center  rounded-2xl px-4 shadow-inner drop-shadow-xl  bg" +
         props.className
       }
     >
@@ -76,26 +76,28 @@ export default function Nav(props) {
 
       {/* logo */}
       <div className="flex justify-center">
-        <a className=" normal-case text-xl">Wallpaper Manager</a>
+        <a className=" normal-case text-xl text-accent">Wallpaper Manager</a>
       </div>
 
       {/* tabs */}
       <div className=" ">
-        <div className="mac bg-primary rounded-lg p-1 mx-auto shadow-inner drop-shadow-sm ">
+        <div className="mac  bg-secondary rounded-lg p-1 mx-auto shadow-inner drop-shadow-sm ">
           {data.map((a) => {
             return (
-              <button
-                key={a.value}
-                id={a.value}
-                className={
-                  a.active
-                    ? " bg-accent rounded-lg text-black  tab  text-md"
-                    : "tab text-md "
-                }
-                onClick={tabget}
-              >
-                <Link to={a.value}>{a.label}</Link>
-              </button>
+              <Link className=" " to={a.value}>
+                <button
+                  key={a.value}
+                  id={a.value}
+                  className={
+                    a.active
+                      ? " bg-neutral text-accent rounded-lg   tab  text-md"
+                      : "tab text-accent text-md "
+                  }
+                  onClick={tabget}
+                >
+                  {a.label}
+                </button>
+              </Link>
             );
           })}
         </div>

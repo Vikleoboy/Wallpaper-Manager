@@ -27,12 +27,12 @@ function Tr(props) {
   } else {
     console.log(data.r);
     return (
-      <div className=" bg-secondary flex p-6 space-x-2  mt-6 rounded-xl shadow-inner drop-shadow-lg">
+      <div className=" bg-primary flex p-3 space-x-2   rounded-xl shadow-inner drop-shadow-lg">
         {data.tr.map((i) => {
           return (
             <button
               key={i}
-              className=" bg-accent text-black badge  p-3 opacity-75"
+              className=" bg-neutrel  text-accent badge  p-3 opacity-75"
               info={i}
               onClick={() => {
                 props.add(i);

@@ -10,7 +10,7 @@ const createWindow = () => {
       preload: path.join(__dirname, "preload.js"),
     },
   });
-
+  win.setMenu(null);
   win.loadURL("http://localhost:3000/");
 };
 // This method will be called when Electron has finished
